@@ -32,7 +32,7 @@ This project transforms smartphone photos of documents into professional, scan-q
 
 Watch the document scanner in action:
 
-**[📹 View Demo Video](./demo/demo-video.mp4)**
+**[📹 View Demo Video](https://github.com/komal-sukheja/document-scanner/releases/download/v1.0.0/demo-video.mp4)**
 
 *The video demonstrates the complete workflow: uploading documents, automatic detection, scan mode selection, and multi-format export.*
 
@@ -193,7 +193,7 @@ This application is live and accessible at: **[smart-document-scanner.streamlit.
 ## 📧 Connect With Me
 
 - **LinkedIn**: [Komal Sukheja](https://www.linkedin.com/in/komal-sukheja/)
-- **Email**: [komalsukheja2001@gmail.com]
+- **Email**: komalsukheja2001@gmail.com
 - **GitHub**: [@komal-sukheja](https://github.com/komal-sukheja)
 
 ---
