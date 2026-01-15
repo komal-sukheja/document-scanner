@@ -1,211 +1,216 @@
 # 📄 Smart Document Scanner
 
-A professional web-based document scanner application that automatically detects, transforms, and exports document images as clean scanned copies. Built with Streamlit and OpenCV for real-time document processing.
+A professional web-based document scanner application that automatically detects, transforms, and exports document images as clean scanned copies. Built with Streamlit and OpenCV for real-time document processing and instant results.
 
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
-![Streamlit](https://img.shields.io/badge/Streamlit-1.28%2B-red)
-![OpenCV](https://img.shields.io/badge/OpenCV-4.8%2B-green)
-![License](https://img.shields.io/badge/License-MIT-yellow)
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=for-the-badge&logo=python&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
+![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)
 
-## ✨ Features
+## 🎯 Project Overview
 
-- **🔍 Automatic Document Detection**: Intelligent edge detection and contour approximation to find document boundaries
-- **📐 Perspective Correction**: Four-point perspective transformation for accurate document alignment
-- **🎨 Multiple Scan Modes**: 
-  - Black & White mode for clean text documents
-  - Enhanced B&W mode for documents with backgrounds
-- **🧹 Noise Reduction**: Adjustable morphological operations to remove artifacts
-- **📤 Multi-Format Export**: Download as JPG, PNG, or PDF
-- **🎯 Real-time Preview**: Instant visualization of corner detection and processing results
-- **💻 Responsive UI**: Clean, intuitive interface with sidebar controls
+This project transforms smartphone photos of documents into professional, scan-quality images through intelligent edge detection and perspective correction. The solution provides instant document scanning capabilities directly in your browser, eliminating the need for physical scanners or complex software installations.
 
-## 🚀 Demo
+## ✨ Key Features
 
-[Live Demo on Streamlit Cloud](https://your-app-url.streamlit.app) *(Update with your deployment URL)*
+- **Automatic Document Detection**: Intelligent edge detection using Canny algorithm and contour approximation to find document boundaries
+- **Perspective Correction**: Four-point perspective transformation for accurate document alignment and bird's-eye view
+- **Multiple Scan Modes**: Black & White for text documents, Enhanced B&W for documents with backgrounds
+- **Real-time Processing**: Instant preview with corner detection visualization (green markers)
+- **Multi-Format Export**: Download scanned documents as JPG, PNG, or PDF
+- **Noise Reduction**: Adjustable morphological operations (0-5 levels) to remove artifacts and grain
+- **Clean Interface**: Intuitive sidebar controls with responsive two-column layout
 
-## 📸 Screenshots
+## 🛠️ Tools & Technologies
 
-### Original Document Detection
-The app automatically detects document boundaries with corner markers:
+- **Streamlit**: Web application framework and user interface
+- **OpenCV (opencv-python-headless)**: Image processing and computer vision algorithms
+- **NumPy**: Numerical computing and array operations
+- **Pillow (PIL)**: Image manipulation and format conversion
+- **Python 3.8+**: Core programming language
 
-### Scanned Output
-Clean, professionally scanned document with perspective correction:
+## 🎥 Demo Video
 
-## 🛠️ Technology Stack
+Watch the document scanner in action:
 
-- **Frontend Framework**: [Streamlit](https://streamlit.io/)
-- **Image Processing**: [OpenCV](https://opencv.org/)
-- **Image Manipulation**: [Pillow (PIL)](https://python-pillow.org/)
-- **Numerical Computing**: [NumPy](https://numpy.org/)
+**[📹 View Demo Video](./demo/demo-video.mp4)**
 
-## 📋 Prerequisites
+*The video demonstrates the complete workflow: uploading documents, automatic detection, scan mode selection, and multi-format export.*
 
-- Python 3.8 or higher
-- pip package manager
+## 📊 How It Works
 
-## 🔧 Installation
+### Document Processing Pipeline
 
-### 1. Clone the repository
+1. **Image Upload**
+   - Supports JPG, PNG, and JPEG formats
+   - File size handled efficiently for web deployment
 
-```bash
-git clone https://github.com/yourusername/document-scanner.git
-cd document-scanner
-```
+2. **Automatic Detection**
+   - Converts image to grayscale
+   - Applies Gaussian blur (5x5 kernel) for noise reduction
+   - Canny edge detection (thresholds: 75, 200)
+   - Finds contours and identifies largest 4-sided shape
 
-### 2. Create a virtual environment (recommended)
+3. **Perspective Transformation**
+   - Orders corner points (top-left, top-right, bottom-right, bottom-left)
+   - Calculates optimal output dimensions
+   - Applies perspective transform matrix for bird's-eye view
 
-```bash
-# Windows
-python -m venv scanenv
-scanenv\Scripts\activate
+4. **Scan Processing**
+   - **Black & White Mode**: Adaptive Gaussian thresholding (block size: 11, C: 2)
+   - **Enhanced B&W Mode**: Adaptive mean thresholding (block size: 15, C: 10)
+   - Morphological operations (closing + opening) for noise removal
 
-# macOS/Linux
-python3 -m venv scanenv
-source scanenv/bin/activate
-```
+5. **Export**
+   - PIL-based format conversion
+   - High-quality JPEG (95% quality), PNG, or PDF output
 
-### 3. Install dependencies
 
-```bash
-pip install -r requirements.txt
-```
-
-## 🎮 Usage
-
-### Running Locally
-
-```bash
-streamlit run app.py
-```
-
-The application will open in your default browser at `http://localhost:8501`
-
-### Basic Workflow
-
-1. **Upload Document**: Click "Upload Document Image" and select a photo of your document
-2. **Auto-Detection**: The app automatically detects document boundaries (marked with green corners)
-3. **Adjust Settings** (Optional):
-   - Choose scan mode: **Black & White** or **Enhanced B&W**
-   - Adjust noise reduction (0-5) for cleaner output
-4. **Export**: Click "Export Document" and download in your preferred format (JPG/PNG/PDF)
-5. **Reset**: Use the reset button if detection needs to be re-run
-
-### Tips for Best Results
-
-- 📷 Ensure good lighting when capturing document photos
-- 🖼️ Make sure all four corners of the document are visible
-- 📐 Place document on a contrasting background
-- 🎯 Use **Black & White** mode for text-heavy documents
-- 🌈 Use **Enhanced B&W** mode for documents with colored backgrounds
-- 🧹 Increase noise reduction for images with artifacts or grain
-
-## 📦 Project Structure
+## 📂 Project Structure
 
 ```
 document-scanner/
-├── app.py                 # Main application file
-├── requirements.txt       # Python dependencies
-├── README.md             # Project documentation
-├── .gitignore            # Git ignore rules
-└── .streamlit/           # Streamlit configuration (optional)
-    └── config.toml
+│
+├── app.py                      # Main application with processing logic
+├── requirements.txt            # Python dependencies
+├── demo/
+│   └── demo-video.mp4         # Functionality demonstration (6.5 MB)
+├── .gitignore                 # Git ignore rules (excludes venv, cache)
+├── .streamlit/                # Streamlit configuration 
+│   └── config.toml
+└── README.md                  # Project documentation
 ```
 
-## 🧩 Core Components
+## 🎓 Skills Demonstrated
 
-### Image Processing Pipeline
+- Computer vision and image processing
+- Edge detection and contour approximation
+- Perspective transformation algorithms
+- Web application development with Streamlit
+- Session state management
+- Multi-format file handling
+- UI/UX design for user-friendly interfaces
 
-1. **Edge Detection**: Canny edge detection with Gaussian blur preprocessing
-2. **Contour Detection**: Identifies the largest 4-sided contour as document boundary
-3. **Perspective Transform**: Four-point transformation for bird's-eye view
-4. **Scan Processing**: Adaptive thresholding with optional noise reduction
-5. **Export**: Multi-format conversion (JPG, PNG, PDF)
+## 📸 Screenshots
 
-### Key Functions
+### Original Document with Detection
+The app automatically identifies document boundaries with numbered corner markers:
 
-- `detect_document_contour()`: Automated document boundary detection
-- `four_point_transform()`: Perspective correction algorithm
-- `apply_scan_mode()`: Applies different scanning filters
-- `apply_noise_reduction()`: Morphological operations for cleaner output
+![Original Detection](./screenshots/original-detection.png)
 
-## ⚙️ Configuration
+### Scanned Output
+Clean, professionally processed document with perspective correction:
 
-The app uses the following default parameters (adjustable in `app.py`):
+![Scanned Output](./screenshots/scanned-output.png)
 
-```python
-CANNY_THRESHOLD1 = 75
-CANNY_THRESHOLD2 = 200
-GAUSSIAN_BLUR = (5, 5)
-CONTOUR_APPROX_FACTOR = 0.02
+## 🚀 How to Use
+
+### Option 1: Use Live Deployment
+
+Visit the deployed application: [Live Demo](https://your-app-url.streamlit.app)
+
+### Option 2: Run Locally
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/document-scanner.git
+   cd document-scanner
+   ```
+
+2. **Create virtual environment** (recommended)
+   ```bash
+   # Windows
+   python -m venv scanenv
+   scanenv\Scripts\activate
+
+   # macOS/Linux
+   python3 -m venv scanenv
+   source scanenv/bin/activate
+   ```
+
+3. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Run the application**
+   ```bash
+   streamlit run app.py
+   ```
+
+   The app will open in your browser at `http://localhost:8501`
+
+### Using the Scanner
+
+1. **Upload Document**: Click "Upload Document Image" and select a photo
+2. **Verify Detection**: Check green corner markers on the original image
+3. **Adjust Settings** (if needed):
+   - Choose scan mode based on document type
+   - Adjust noise reduction (higher = cleaner, may lose detail)
+4. **Export**: Click "Export Document" and select format (JPG/PNG/PDF)
+5. **Reset**: Use reset button if detection is incorrect
+
+### Tips for Best Results
+
+- 📷 Ensure good, even lighting when photographing documents
+- 🖼️ Capture all four corners clearly in the frame
+- 📐 Place documents on contrasting backgrounds (e.g., white paper on dark desk)
+- 🎯 Use **Black & White** for text-heavy documents (contracts, forms)
+- 🌈 Use **Enhanced B&W** for documents with colored or patterned backgrounds
+- 🧹 Start with noise reduction at 2, adjust based on output quality
+
 ```
 
 ## 🚀 Deployment
 
-### Deploy to Streamlit Cloud
+### Deploy to Streamlit Cloud (Recommended)
 
 1. Push your code to GitHub
-2. Go to [share.streamlit.io](https://share.streamlit.io)
-3. Sign in with GitHub
+2. Visit [share.streamlit.io](https://share.streamlit.io)
+3. Sign in with your GitHub account
 4. Click "New app"
-5. Select your repository and branch
-6. Set main file path: `app.py`
-7. Click "Deploy"
+5. Select your repository, branch, and set main file path to `app.py`
+6. Click "Deploy"
 
 Your app will be live at `https://your-app-name.streamlit.app`
 
-### Deploy to Other Platforms
+### Requirements for Deployment
 
-The app can also be deployed to:
-- **Heroku**: Add `setup.sh` and `Procfile`
-- **Railway**: Direct deployment from GitHub
-- **AWS/GCP/Azure**: Using containerization with Docker
+The `requirements.txt` includes deployment-ready dependencies:
+- `opencv-python-headless` (not `opencv-python`) for cloud compatibility
+- All dependencies pinned for consistent deployment
 
-## 🤝 Contributing
+## 🐛 Known Limitations
 
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 🐛 Known Issues & Limitations
-
-- Very low-light or blurry images may fail detection
-- Documents with complex backgrounds may require manual corner adjustment
-- PDF export is single-page only
-- Maximum file upload size depends on Streamlit Cloud limits (200MB default)
+- Detection may fail on very low-light or blurry images
+- Complex backgrounds might require manual adjustment (feature planned)
+- PDF export limited to single page per scan
+- Maximum upload size: 200MB (Streamlit Cloud default)
 
 ## 📝 Future Enhancements
 
-- [ ] Manual corner adjustment with drag-and-drop
+- [ ] Manual corner adjustment with interactive drag-and-drop
 - [ ] Batch processing for multiple documents
-- [ ] OCR integration for text extraction
-- [ ] Document type classification
-- [ ] Cloud storage integration
-- [ ] Mobile app version
+- [ ] OCR integration for text extraction and searchable PDFs
+- [ ] Document type classification (invoice, receipt, contract)
+- [ ] Cloud storage integration (Google Drive, Dropbox)
+- [ ] Mobile-responsive layout optimization
 
-## 📄 License
+## 🤝 Contributing
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Contributions are welcome! To contribute:
 
-## 👨‍💻 Author
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/NewFeature`)
+3. Commit your changes (`git commit -m 'Add NewFeature'`)
+4. Push to the branch (`git push origin feature/NewFeature`)
+5. Open a Pull Request
 
-**Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
+## 🔗 Connect With Me
 
-## 🙏 Acknowledgments
-
-- OpenCV community for excellent documentation
-- Streamlit team for the amazing framework
-- Inspiration from mobile document scanning apps
-
-## 📧 Contact
-
-For questions or feedback, please open an issue or reach out at your.email@example.com
+- **LinkedIn**: [your-linkedin-profile](https://www.linkedin.com/in/your-profile/)
+- **Email**: your.email@example.com
+- **GitHub**: [your-github-username](https://github.com/your-username)
 
 ---
 
-⭐ **If you find this project useful, please consider giving it a star!**
+⭐ If you found this project useful, please consider giving it a star!
