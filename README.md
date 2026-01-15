@@ -64,7 +64,6 @@ Watch the document scanner in action:
    - PIL-based format conversion
    - High-quality JPEG (95% quality), PNG, or PDF output
 
-
 ## 📂 Project Structure
 
 ```
@@ -72,11 +71,22 @@ document-scanner/
 │
 ├── app.py                      # Main application with processing logic
 ├── requirements.txt            # Python dependencies
-├── demo/
-│   └── demo-video.mp4         # Functionality demonstration (6.5 MB)
-├── .gitignore                 # Git ignore rules (excludes venv, cache)
-├── .streamlit/                # Streamlit configuration 
+├── .streamlit/                 # Streamlit configuration
 │   └── config.toml
+├── demo/
+│   └── demo-video.mp4         # Functionality demonstration
+├── sample_images/             # Sample documents for testing
+│   ├── article.JPG
+│   ├── doc.jpg
+│   ├── doc1.JPG
+│   ├── hanwritten-notes.jpg
+│   ├── hanwritten-notes1.jpg
+│   ├── note.JPG
+│   └── receipt.JPG
+├── screenshots/               # Application screenshots
+│   ├── original-detection.JPG
+│   └── scanned_document.jpg
+├── .gitignore                 # Git ignore rules
 └── README.md                  # Project documentation
 ```
 
@@ -95,24 +105,24 @@ document-scanner/
 ### Original Document with Detection
 The app automatically identifies document boundaries with numbered corner markers:
 
-![Original Detection](./screenshots/original-detection.png)
+![Original Detection](./screenshots/original-detection.JPG)
 
 ### Scanned Output
 Clean, professionally processed document with perspective correction:
 
-![Scanned Output](./screenshots/scanned-output.png)
+![Scanned Output](./screenshots/scanned_document.jpg)
 
 ## 🚀 How to Use
 
 ### Option 1: Use Live Deployment
 
-Visit the deployed application: [Live Demo](https://your-app-url.streamlit.app)
+Visit the deployed application: **[🌐 Live Demo](https://smart-document-scanner.streamlit.app/)**
 
 ### Option 2: Run Locally
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/document-scanner.git
+   git clone https://github.com/komal-sukheja/document-scanner.git
    cd document-scanner
    ```
 
@@ -147,7 +157,7 @@ Visit the deployed application: [Live Demo](https://your-app-url.streamlit.app)
    - Choose scan mode based on document type
    - Adjust noise reduction (higher = cleaner, may lose detail)
 4. **Export**: Click "Export Document" and select format (JPG/PNG/PDF)
-5. **Reset**: Use reset button if detection is incorrect
+5. **Reset**: Use reset corners button if detection is incorrect
 
 ### Tips for Best Results
 
@@ -158,26 +168,10 @@ Visit the deployed application: [Live Demo](https://your-app-url.streamlit.app)
 - 🌈 Use **Enhanced B&W** for documents with colored or patterned backgrounds
 - 🧹 Start with noise reduction at 2, adjust based on output quality
 
-```
+## 🚀 Deployed on Streamlit Cloud
 
-## 🚀 Deployment
+This application is live and accessible at: **[smart-document-scanner.streamlit.app](https://smart-document-scanner.streamlit.app/)**
 
-### Deploy to Streamlit Cloud (Recommended)
-
-1. Push your code to GitHub
-2. Visit [share.streamlit.io](https://share.streamlit.io)
-3. Sign in with your GitHub account
-4. Click "New app"
-5. Select your repository, branch, and set main file path to `app.py`
-6. Click "Deploy"
-
-Your app will be live at `https://your-app-name.streamlit.app`
-
-### Requirements for Deployment
-
-The `requirements.txt` includes deployment-ready dependencies:
-- `opencv-python-headless` (not `opencv-python`) for cloud compatibility
-- All dependencies pinned for consistent deployment
 
 ## 🐛 Known Limitations
 
@@ -195,21 +189,12 @@ The `requirements.txt` includes deployment-ready dependencies:
 - [ ] Cloud storage integration (Google Drive, Dropbox)
 - [ ] Mobile-responsive layout optimization
 
-## 🤝 Contributing
 
-Contributions are welcome! To contribute:
+## 📧 Connect With Me
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/NewFeature`)
-3. Commit your changes (`git commit -m 'Add NewFeature'`)
-4. Push to the branch (`git push origin feature/NewFeature`)
-5. Open a Pull Request
-
-## 🔗 Connect With Me
-
-- **LinkedIn**: [your-linkedin-profile](https://www.linkedin.com/in/your-profile/)
-- **Email**: your.email@example.com
-- **GitHub**: [your-github-username](https://github.com/your-username)
+- **LinkedIn**: [Komal Sukheja](https://www.linkedin.com/in/komal-sukheja/)
+- **Email**: [komalsukheja2001@gmail.com]
+- **GitHub**: [@komal-sukheja](https://github.com/komal-sukheja)
 
 ---
 
